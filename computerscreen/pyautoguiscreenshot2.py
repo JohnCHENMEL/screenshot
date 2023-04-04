@@ -1,17 +1,16 @@
-
 import os
 import pyautogui
 import cv2
 import numpy as np
 import keyboard
 
-# ÉèÖÃÊÓÆµ±àÂëÆ÷ºÍÊä³öÎÄ¼ş
+# è®¾ç½®è§†é¢‘ç¼–ç å™¨å’Œè¾“å‡ºæ–‡ä»¶
 SCREEN_SIZE = tuple(pyautogui.size())
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 output_path = 'c:/python/video/abc/output.avi'
 file_number = 1
 
-# ¼ì²éÎÄ¼şÊÇ·ñ´æÔÚ£¬Èç¹û´æÔÚ¾Í¼Ó1
+# æ£€æŸ¥æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨å°±åŠ 1
 while os.path.exists(output_path):
     output_path = f'c:/python/video/abc/output_{file_number}.avi'
     file_number += 1
@@ -24,24 +23,27 @@ print(f"Screen refresh rate: {refresh_rate:.2f} fps")
 
 out = cv2.VideoWriter(output_path, fourcc, 10, (SCREEN_SIZE[0]-220, SCREEN_SIZE[1]-130), isColor=True)
 
-# ¿ªÊ¼Â¼ÖÆ
+# å¼€å§‹å½•åˆ¶
 try:
     while True:
-        # ÆÁÄ»½ØÍ¼
+        # å±å¹•æˆªå›¾
         img = pyautogui.screenshot(region=(110, 90, SCREEN_SIZE[0]-220, SCREEN_SIZE[1]-130))
 
-        # ×ª»»Îª OpenCV ¸ñÊ½
+        # è½¬æ¢ä¸º OpenCV æ ¼å¼
         frame = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
-        # Ğ´ÈëÊÓÆµÎÄ¼ş
+        # å†™å…¥è§†é¢‘æ–‡ä»¶
         out.write(frame)
 
-        # °´ Q ¼üÍ£Ö¹Â¼ÖÆ
+        # æŒ‰ Q é”®åœæ­¢å½•åˆ¶
         if keyboard.is_pressed('q'):
             break
 finally:
-     # ÊÍ·Å×ÊÔ´
+     # é‡Šæ”¾èµ„æº
     out.release()
     cv2.destroyAllWindows()
 
-    # ±¾ÏëÓÃrefresh_rateÀ´¿ØÖÆËÙ¶È£¬µ«ÊÇ²»ĞĞ£¬ÎÒÕâÀïÓÃÁËÃ¿Ãë10ÕêµÄËÙ¶È£¬ºÃÏñ¿´ÆğÀ´¸úÔ­ËÙ¶È²î²»¶à£¡
+    # æœ¬æƒ³ç”¨refresh_rateæ¥æ§åˆ¶é€Ÿåº¦ï¼Œä½†æ˜¯ä¸è¡Œï¼Œæˆ‘è¿™é‡Œç”¨äº†æ¯ç§’10è´çš„é€Ÿåº¦ï¼Œå¥½åƒçœ‹èµ·æ¥è·ŸåŸé€Ÿåº¦å·®ä¸å¤šï¼
+
+
+
