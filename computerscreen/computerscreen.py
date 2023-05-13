@@ -8,12 +8,12 @@ import keyboard
 # 设置视频编码器和输出文件
 SCREEN_SIZE = tuple(pyautogui.size())
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-output_path = 'c:/python/video/abc/output.avi'
+output_path = 'd:/python/video/abc/output.avi'
 file_number = 1
 
 # 检查文件是否存在，如果存在就加1
 while os.path.exists(output_path):
-    output_path = f'c:/python/video/abc/output_{file_number}.avi'
+    output_path = f'd:/python/video/abc/output_{file_number}.avi'
     file_number += 1
 
 
